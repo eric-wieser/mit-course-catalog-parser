@@ -25,7 +25,7 @@ def process_page(soup):
 		# get the first tag
 		curr = next(a_iter)
 		while curr:
-			next_a_tag = next(a_iter)
+			next_a_tag = next(a_iter, None)
 
 			res = []
 
@@ -48,6 +48,8 @@ def process_page(soup):
 					curr = next_a_tag
 					break
 
+				if curr is None:
+					return
 
 			yield wrap(res)
 
