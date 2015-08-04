@@ -1,4 +1,5 @@
-from __future__ import unicode_literals
+#! python3
+
 import requests
 import bs4
 import re
@@ -8,7 +9,7 @@ from data import Course
 
 page = requests.get('http://student.mit.edu/catalog/m6a.html')
 
-soup = bs4.BeautifulSoup(page.text)
+soup = bs4.BeautifulSoup(page.text, "html5lib")
 
 def wrap(elems):
 	res = soup.new_tag('div')
@@ -133,4 +134,6 @@ def process_chunk(chunk):
 	return course
 
 for chunk in process_page(soup):
-	print process_chunk(chunk).prettify()
+	print(process_chunk(chunk).prettify())
+
+print(len(Course.by_number))
